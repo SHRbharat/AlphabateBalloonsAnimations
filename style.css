@@ -1,0 +1,409 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  border: none;
+  font-size: 62.5%;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  background: #f4f9ba url("assets/back.png") no-repeat center/cover;
+}
+
+.back-btn {
+  position: relative;
+  top: 3rem;
+  left: 3rem;
+  height: 5rem;
+  width: 5rem;
+  border-radius: 50%;
+  border: 2px solid #1c1c1c;
+  font-size: 5rem;
+  color: #1c1c1c;
+  background-color: #fcfcfc;
+  transition: all 0.3s ease-in-out;
+}
+
+.back-btn:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(2px 4px 8px #1c1c1c);
+}
+
+.back-btn i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.pump-container {
+  height: 30rem;
+  width: 30rem;
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  cursor: pointer;
+  z-index: 100;
+}
+
+#handle {
+  position: absolute;
+  height: 15rem;
+  width: 14rem;
+  bottom: 14rem;
+  right: 3.5rem;
+}
+
+#nose {
+  position: absolute;
+  height: 16rem;
+  width: 15rem;
+  bottom: 3.2rem;
+  right: 13rem;
+}
+
+#box {
+  position: absolute;
+  height: 20rem;
+  width: 20rem;
+  bottom: 0.5rem;
+  right: 0.5rem;
+}
+
+@keyframes moveDownAndUp {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    /* fast */
+    transform: translateY(4rem);
+    animation-timing-function: ease-in;
+  }
+  100% {
+    /* slow */
+    transform: translateY(0);
+    animation-timing-function: ease-out;
+  }
+}
+
+.animateHandle {
+  animation: moveDownAndUp 0.5s forwards;
+}
+
+@keyframes press {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.1, 0.9);
+    animation-timing-function: ease-in;
+  }
+  80% {
+    transform: scale(0.9, 1.1);
+    animation-timing-function: ease-out;
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+.animateBox {
+  animation: press 0.6s ease-in-out;
+  transform-origin: bottom;
+}
+
+@keyframes noseMove {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    /* fast */
+    transform: translate(-0.1rem, 0.5rem);
+    animation-timing-function: ease-in;
+  }
+  100% {
+    /* slow */
+    transform: translate(0, 0);
+    animation-timing-function: ease-out;
+  }
+}
+
+.animateNose {
+  animation: noseMove 0.5s ease-in-out;
+}
+
+/* balloons */
+.balloon-container {
+  position: absolute;
+  bottom: 12rem;
+  right: 16rem;
+  background: transparent;
+  height: 22rem;
+  width: 22rem;
+  cursor: pointer;
+  transition: opacity 1s ease-out;
+}
+
+.balloon-image {
+  position: absolute;
+  height: 4rem;
+  width: 4rem;
+  bottom: 4.8rem;
+  left: 9.7rem;
+}
+
+.balloon-text {
+  position: absolute;
+  height: 2rem;
+  width: 2rem;
+  bottom: 6rem;
+  left: 10.7rem;
+}
+
+.thread {
+  position: relative;
+  width: 12rem;
+  height: 15rem;
+  top: 12rem;
+  left: 6rem;
+}
+
+/* Keyframes for each inflation stage */
+@keyframes inflateStage1 {
+  from {
+    height: 5rem;
+    width: 5rem;
+    bottom: 4.8rem;
+    left: 9.7rem;
+  }
+  to {
+    height: 10rem;
+    width: 10rem;
+    bottom: 4.6rem;
+    left: 6.8rem;
+  }
+}
+
+@keyframes inflateStage2 {
+  from {
+    height: 10rem;
+    width: 10rem;
+    bottom: 4.6rem;
+    left: 6.8rem;
+  }
+  to {
+    height: 15rem;
+    width: 15rem;
+    bottom: 3.5rem;
+    left: 4.7rem;
+  }
+}
+
+@keyframes inflateStage3 {
+  from {
+    height: 15rem;
+    width: 15rem;
+    bottom: 3.5rem;
+    left: 4.7rem;
+  }
+  to {
+    height: 20rem;
+    width: 20rem;
+    bottom: 3rem;
+    left: 1.7rem;
+  }
+}
+
+/* text */
+@keyframes inflateStage1Text {
+  from {
+    height: 3rem;
+    width: 3rem;
+    bottom: 6rem;
+    left: 10.7rem;
+  }
+  to {
+    height: 6rem;
+    width: 6rem;
+    bottom: 7rem;
+    left: 9rem;
+  }
+}
+
+@keyframes inflateStage2Text {
+  from {
+    height: 6rem;
+    width: 6rem;
+    bottom: 7rem;
+    left: 9rem;
+  }
+  to {
+    height: 9rem;
+    width: 9rem;
+    bottom: 7rem;
+    left: 7.8rem;
+  }
+}
+
+@keyframes inflateStage3Text {
+  from {
+    height: 9rem;
+    width: 9rem;
+    bottom: 7rem;
+    left: 7.8rem;
+  }
+  to {
+    height: 12rem;
+    width: 12rem;
+    bottom: 8rem;
+    left: 5.5rem;
+  }
+}
+
+/* Balloon inflation stages */
+.inflateStage1 {
+  animation: inflateStage1 0.5s forwards;
+}
+
+.inflateStage2 {
+  animation: inflateStage2 0.5s forwards;
+}
+
+.inflateStage3 {
+  animation: inflateStage3 0.5s forwards;
+}
+
+/* Text inflation stages */
+.inflateStage1Text {
+  animation: inflateStage1Text 0.5s forwards;
+}
+
+.inflateStage2Text {
+  animation: inflateStage2Text 0.5s forwards;
+}
+
+.inflateStage3Text {
+  animation: inflateStage3Text 0.5s forwards;
+}
+
+/* balloon float paths */
+@keyframes floatLeft1 {
+  0% {
+    transform: translate(0, 0);
+  }
+  20% {
+    transform: translate(-25rem, -10rem);
+  }
+  40% {
+    transform: translate(-50rem, -20rem);
+  }
+  60% {
+    transform: translate(-75rem, -25rem);
+  }
+  80% {
+    transform: translate(-90rem, -32rem);
+  }
+  100% {
+    transform: translate(-110rem, -35rem);
+  }
+}
+
+@keyframes floatLeft2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  20% {
+    transform: translate(-15rem, -30rem);
+  }
+  40% {
+    transform: translate(-30rem, -32rem);
+  }
+  60% {
+    transform: translate(-75rem, -35rem);
+  }
+  80% {
+    transform: translate(-94rem, -32rem);
+  }
+  100% {
+    transform: translate(-100rem, -35rem);
+  }
+}
+
+@keyframes floatLeft3 {
+  0% {
+    transform: translate(0, 0);
+  }
+  20% {
+    transform: translate(-32rem, -5rem);
+  }
+  40% {
+    transform: translate(-42rem, -15rem);
+  }
+  60% {
+    transform: translate(-45rem, -5rem);
+  }
+  80% {
+    transform: translate(-48rem, -2rem);
+  }
+  100% {
+    transform: translate(-56rem, 0rem);
+  }
+}
+
+@keyframes floatLeft4 {
+  0% {
+    transform: translate(0, 0);
+  }
+  20% {
+    transform: translate(-25rem, 0rem);
+  }
+  40% {
+    transform: translate(-30rem, 10rem);
+  }
+  60% {
+    transform: translate(-40rem, 5rem);
+  }
+  80% {
+    transform: translate(-60rem, -4rem);
+  }
+  100% {
+    transform: translate(-80rem, -35rem);
+  }
+}
+
+.floatLeft1 {
+  animation: floatLeft1 20s linear forwards;
+}
+.floatLeft2 {
+  animation: floatLeft2 20s ease-out forwards;
+}
+.floatLeft3 {
+  animation: floatLeft3 20s ease-in-out forwards;
+}
+.floatLeft4 {
+  animation: floatLeft4 20s ease-in forwards;
+}
+
+/* burst */
+.balloon-fragment {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  animation: float 2s infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
